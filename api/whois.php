@@ -22,7 +22,7 @@ if ($do == "whois_u_id") {
             $result = mysqli_stmt_get_result($stmt);
             if(mysqli_num_rows($result) == 1){
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                die('{"status":200, "whois":"'.$row['username'].'"}');
+                echo '{"status":200, "whois":"'.$row['username'].'"}';
             } else{
                 die('{"status":200, "whoisError":"username_not_found"}');
             }
