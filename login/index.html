@@ -75,7 +75,7 @@
             var password = $("#password");
 
             e.preventDefault();
-            $.get( "/ADS_10_B/api/login.php",
+            $.get( "/api/login.php",
                 { username: username.val(), password: password.val() }, function(data) {
 
                 var result = JSON.parse(data);
