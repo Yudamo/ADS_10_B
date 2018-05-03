@@ -146,11 +146,13 @@ if ($do == 'meeting_request') {
             while ($row = mysqli_fetch_array($result)) {
                 if ($chatList != "[") $chatList .= ", ";
 
+                $sender = ($row["sender"] == $_SESSION['u_id']) ? 'me' : 'you';
+
                 $chat = "{";
                 $chat .= '"chat_id":"' . $row["chat_id"] . '", ';
                 $chat .= '"parent_u_id":"' . $row["parent_u_id"] . '", ';
                 $chat .= '"teacher_u_id":"' . $row["teacher_u_id"] . '", ';
-                $chat .= '"sender":"' . $row["sender"] . '", ';
+                $chat .= '"sender":"' . $sender . '", ';
                 $chat .= '"message":"' . $row["message"] . '", ';
                 $chat .= '"time":"' . $row["time"] . '"';
                 $chat .= "}";
