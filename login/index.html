@@ -21,7 +21,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" id="form-login">
 					<span class="login100-form-title p-b-70">
 						Selamat Datang di Situs Laporan Perkembangan Akademik Siswa
 					</span>
@@ -30,43 +30,22 @@
 					</span>
 
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
-						<input class="input100" type="text" name="username">
+						<input class="input100" type="text" name="username" id="username">
 						<span class="focus-input100" data-placeholder="Username"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="pass" id="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" id="btn-login">
 							Masuk
 						</button>
 					</div>
                     <ul class="login-more p-t-30">
-                    <li>
-							<a href="#" class="txt2">
-								Lupa Password?
-							</a>
-						</li>
                     </ul>
-                   <br>     
-                   <br>
-                   <br>
-					<ul>
-						
-                         <li class="m-b-8">
-							<a href="#" class="txt1">
-								Laporkan Kesalahan
-							</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-							<a href="#" class="txt1">
-								Butuh Bantuan
-							</a> 
-						</li>
-                        
-                       
-					</ul>
 				</form>
 			</div>
 		</div>
@@ -84,6 +63,43 @@
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 	<script src="js/main.js"></script>
+
+    <script>
+        var btnLogin = $("#btn-login");
+
+        $("#form-login").submit(function(e){
+            btnLogin.css("background-color", "#333333");
+            btnLogin.prop('disabled', true);
+
+            var username = $("#username");
+            var password = $("#password");
+
+            e.preventDefault();
+            $.get( "/api/login.php",
+                { username: username.val(), password: password.val() }, function(data) {
+
+                var result = JSON.parse(data);
+                if (result.login === "wrong_username") {
+                    alert("username atau password salah");
+
+                    username.val("");
+                    password.val("");
+
+                    username.focus();
+                } else if (result.login === "succeeded") {
+                    window.location = "/dashboard";
+                } else {
+                    username.val("");
+                    password.val("");
+
+                    username.focus();
+                }
+            });
+
+            btnLogin.prop('disabled', false);
+            btnLogin.css("background-color", "#57b846");
+        });
+    </script>
 
 </body>
 </html>
