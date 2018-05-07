@@ -52,8 +52,8 @@
 }
 /* The sidebar menu */
 .sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 250px; /* Set the width of the sidebar */
+    height: 750px; 
+    width: 250px; 
     position: absolute; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 90px; /* Stay at the top */
@@ -210,10 +210,10 @@ tbody:hover tr:hover td {
 }
 /* Style page content */
 .main {
-    margin-top: 30px;
+    margin-top: 2px;
     margin-left: 185px; /* Same as the width of the sidebar */
     padding: 0;
-    background: #fafafa url(https://jackrugile.com/images/misc/noise-diagonal.png);
+    background: #cccccc;
 	color: #444;
 	font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
 	text-shadow: 0 1px 0 #fff;
