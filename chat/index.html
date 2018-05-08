@@ -90,7 +90,7 @@
             Notification.requestPermission();
         else {
             var notification = new Notification('Recommendation - Chat', {
-                icon: '/ADS_10_B/chat/notifications-button.png',
+                icon: '/chat/notifications-button.png',
                 body: "Ada pesan masuk baru",
             });
             notification.onclick = function () {
@@ -104,7 +104,7 @@
 
     // inisialisasi nama
     let profile;
-    $.get("/ADS_10_B/api/whois.php", {do:"me"}, function (who) {
+    $.get("/api/whois.php", {do:"me"}, function (who) {
         let res = JSON.parse(who).whois;
         $('#my-name').text(res.name);
         profile = res.profile;
@@ -112,7 +112,7 @@
     });
     // buka semua chat
     function load() {
-        $.get("/ADS_10_B/api/whois.php", {do: "my_relation"}, function (data) {
+        $.get("/api/whois.php", {do: "my_relation"}, function (data) {
             let relationList = JSON.parse(data).relationList;
             relationList.map(function(relation) {
                 if (profile === 'parent')
@@ -135,7 +135,7 @@
             send.teacher_u_id = selectedChat;
         else
             send.parent_u_id = selectedChat;
-        $.get("/ADS_10_B/api/"+profile+".php", send, function (result) {
+        $.get("/api/"+profile+".php", send, function (result) {
             updateLastChat(selectedChat, chatData[selectedChat], true);
         });
     }
@@ -146,7 +146,7 @@
         let person = createPersonInst(personId);
         personList.append(person);
         // get chat info
-        $.get("/ADS_10_B/api/whois.php", {do:"whois_u_id", u_id: personId}, function (who) {
+        $.get("/api/whois.php", {do:"whois_u_id", u_id: personId}, function (who) {
             updatePersonName(person, JSON.parse(who).whois.name);
         });
         // get chat data
@@ -157,7 +157,7 @@
         else
             send.parent_u_id = personId;
 
-        $.get("/ADS_10_B/api/"+profile+".php", send, function (data) {
+        $.get("/api/"+profile+".php", send, function (data) {
             // parse chat list
             let chatList = JSON.parse(data).chatList;
             for (let i = 0;i < chatList.length; i++) {
@@ -187,7 +187,7 @@
             else
                 send.parent_u_id = personId;
 
-            $.get("/ADS_10_B/api/"+profile+".php", send, function (data) {
+            $.get("/api/"+profile+".php", send, function (data) {
                 // parse chat list
                 let chatList = JSON.parse(data).chatList;
                 for (let i = 0; i < chatList.length; i++) {
