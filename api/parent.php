@@ -141,12 +141,13 @@ if ($do == 'meeting_request') {
     // prepare sql
     $chatList = "[";
     $sql = "SELECT * FROM `chat` WHERE `parent_u_id` = ".$_SESSION['u_id']." AND `teacher_u_id` = ".$_GET['teacher_u_id'];
+    if (isset($_GET['last_id'])) $sql .= " AND `chat_id` > ".$_GET['last_id'];
     if ($result = mysqli_query($dbLink, $sql)) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {
-                if ($chatList != "[") $chatList .= ", ";
-
                 $sender = ($row["sender"] == $_SESSION['u_id']) ? 'me' : 'you';
+
+                if ($chatList != "[") $chatList .= ", ";
 
                 $chat = "{";
                 $chat .= '"chat_id":"' . $row["chat_id"] . '", ';

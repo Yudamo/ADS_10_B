@@ -12,20 +12,14 @@ body {
   text-rendering: optimizeLegibility;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
-  background-image: url("http://s17.postimg.org/fr01hfe33/image.jpg");
+  /* background-image: url("http://s17.postimg.org/fr01hfe33/image.jpg"); */
   background-size: cover;
   background-repeat: none;
 }
 
 .wrapper {
-  position: relative;
-  left: 50%;
-  width: 1500px;
-  height: 800px;
-  -moz-transform: translate(-50%, 0);
-  -ms-transform: translate(-50%, 0);
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
+  margin-top: -50px;
+  height: 510px;
 }
 
 .container {
@@ -106,6 +100,8 @@ body {
   width: -webkit-calc(100% + 2px);
   width: -o-calc(100% + 2px);
   width: calc(100% + 2px);
+  max-height: 360px;
+  min-height: 360px;
 }
 .container .left .people .person {
   position: relative;
@@ -302,7 +298,7 @@ body {
 .container .right .write input {
   font-size: 16px;
   float: left;
-  width: 347px;
+  width: calc(100% - 48px);
   height: 40px;
   padding: 0 10px;
   color: #1a1a1a;
@@ -339,7 +335,7 @@ body {
   height: 42px;
   margin-left: 11px;
   content: '';
-  background-image: url("http://s30.postimg.org/nz9dho0pp/send.png");
+  background-image: url("/ADS_10_B/chat/img/send.png");
   background-repeat: no-repeat;
   background-position: center;
 }

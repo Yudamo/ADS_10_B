@@ -124,6 +124,70 @@ if ($do == 'check_meeting_request') {
     }
     $meetingList .= ']';
     echo '{"status":200, "do":"succeeded", "meetingList":' . $meetingList . '}';
+
+
+} elseif ($do == "send_chat") {
+    // check request parameter
+    if (!isset($_GET['parent_u_id']) && !isset($_GET['message'])) {
+        die('{"status":200, "error":"parameter"}');
+    }
+
+    // write request ke db
+    // persiapan sql
+    $sql = "INSERT INTO `chat` (`parent_u_id`,`teacher_u_id`,`sender`,`message`)";
+    $sql = $sql . "VALUES (?, ?, ?, ?)";
+    if ($stmt = mysqli_prepare($dbLink, $sql)) {
+        // bind parameter ke sql
+        mysqli_stmt_bind_param($stmt, "iiis", $param_parent_u_id, $param_teacher_u_id, $param_sender, $param_message);
+        // memasukan parameter
+        $param_parent_u_id = $_GET['parent_u_id'];
+        $param_teacher_u_id = $_SESSION['u_id'];
+        $param_sender = $_SESSION['u_id'];
+        $param_message = $_GET['message'];
+        // memulai ekseskusi sql
+        if (!mysqli_stmt_execute($stmt)) {
+            die('{"status":200, "meeting_request":"database_error", "debug":"error excecute"}');
+        }
+        // tutup sql
+        mysqli_stmt_close($stmt);
+    } else {
+        // prepare sql error
+        die('{"status":200, "send_chat":"database_error", "debug":"error prepare"}');
+    }
+    // tutup database
+    mysqli_close($dbLink);
+
+    echo '{"status":200, "send_chat":"succeeded"}';
+} elseif ($do == "read_chat") {
+    if (!isset($_GET['parent_u_id'])) {
+        die('{"status":200, "error":"parameter"}');
+    }
+    // prepare sql
+    $chatList = "[";
+    $sql = "SELECT * FROM `chat` WHERE `parent_u_id` = ".$_GET['parent_u_id']." AND `teacher_u_id` = ".$_SESSION['u_id'];
+    if (isset($_GET['last_id'])) $sql .= " AND `chat_id` > ".$_GET['last_id'];
+    if ($result = mysqli_query($dbLink, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $sender = ($row["sender"] == $_SESSION['u_id']) ? 'me' : 'you';
+
+                if ($chatList != "[") $chatList .= ", ";
+
+                $chat = "{";
+                $chat .= '"chat_id":"' . $row["chat_id"] . '", ';
+                $chat .= '"parent_u_id":"' . $row["parent_u_id"] . '", ';
+                $chat .= '"teacher_u_id":"' . $row["teacher_u_id"] . '", ';
+                $chat .= '"sender":"' . $sender . '", ';
+                $chat .= '"message":"' . $row["message"] . '", ';
+                $chat .= '"time":"' . $row["time"] . '"';
+                $chat .= "}";
+
+                $chatList .= $chat;
+            }
+        }
+    }
+    $chatList .= ']';
+    echo '{"status":200, "do":"succeeded", "chatList":' . $chatList . '}';
 } else {
     die('{"status":200, "error":"unknown_api"}');
 }

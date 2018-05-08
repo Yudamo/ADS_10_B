@@ -7,18 +7,79 @@ sistem informasi merupakan salah satu contoh dari teknologi informasi yang sedan
 ### Tujuan
 Tujuan dari dokumen ini dibuat sebagai dokumentasi semua aktivitas yang dilakukan dalam pembuatan sistem informasi perkembangan siswa mulai dari perencanaan, analisis, desain dan implementasi. Tujuan dari sistem informasi ini dibuat untuk memudahkan siswa dalam memilih jenjang pendidikan berikutnya yang sesuai dengan bakat dan minatnya. Serta orang tua juga dapat melihat hasil perkembangan siswa selama di sekolah dan orang tua siswa dapat membuat janji dengan wali murid mengenai perkembangan siswa. Tujuan lain dari sistem informasi ini, sistem dapat merekomendasikan bidang studi yang sesuai dengan siswa bakat dan minat yang diambil melalui tes psikologi yang dilakukan oleh siswa selama kurun waktu tertentu.
 ### Ruang Lingkup
-Sistem informasi perkembangan siswa merupakan suah informasi berbasis web yang menyediakan perkembangan siswa. Dalam sistem informasi tersebut dapat diakses oleh beberapa pengguna, yaitu siswa, orang tua, wali murid, kepala sekolah, dan lembaga psikologi. Pengguna sistem informasi dapat melakukan login, melihat perkembangan siswa, menampilkan jadwal janji temu guru dengan wali murid, membuat janji temu, menginputkan  hasil tes psikologi, melihat grafik perkembangan siswa dan sekolah. Sistem ini dikelola oleh admin yang bertugas untuk membuat source code yang dapat merekomendasikan bidang studi siswa. Data-data diambil dari Lembaga Psikologi yang kemudian diolah oleh admin sebagai bahan untuk rekomendasi bidang studi yang sesuai dengan mahasiswa.
+Sistem informasi perkembangan siswa merupakan sebuah informasi berbasis web yang menyediakan perkembangan siswa. Dalam sistem informasi tersebut dapat diakses oleh beberapa pengguna, yaitu siswa, orang tua, wali murid, kepala sekolah, dan lembaga psikologi. Pengguna sistem informasi dapat melakukan login, melihat perkembangan siswa, menampilkan jadwal janji temu guru dengan wali murid, membuat janji temu, menginputkan  hasil tes psikologi, melihat grafik perkembangan siswa dan sekolah. Sistem ini dikelola oleh admin yang bertugas untuk membuat source code yang dapat merekomendasikan bidang studi siswa. Data-data diambil dari Lembaga Psikologi yang kemudian diolah oleh admin sebagai bahan untuk rekomendasi bidang studi yang sesuai dengan mahasiswa.
 ### Target Audience
+Target audience yang tepat untuk sistem inforasi perkembangan siswa ini adalah sekolah-sekolah yang ingin meningkatkan hasil belajar siswa dalam bidang akademik.
 ### Definisi Istilah dan Singkatan
+1. DFD : Data FLow Diagram, suatu diagram yang memungkinkan untuk menggambarkan suatu sistem sebagai suatu proses yang dihubungkan satu sama sama lain bertujuan untuk memahami sistem secara logika, terstuktur dan jelas.
+2. Interface : Antar muka anatara perangkat lunak dan pengguna
+3. Data Storage : Tempat penyimpanan data
+4. API : Application Programming Interface, sekumpulan perintah, fungsi, serta protokol yang dapat digunakan oleh programmer saat membangun perangkat lunak untuk sistem operasi tertentu.
+5. HTML : Hypertext Mark Language, bahasa yang paling banyak digunakan untuk menulis halaman web.
 ## Deskripsi Umum
+Sistem Indormasi perkembangan siswa merupakan sebuah web yang dapat memperlihatkan perkembangan peserta didik dan dapat merekomendasikan bidang studi yang sesuai dengan bakat dan minat siswa. Pengguna aplikasi disini terbagi menjadi beberapa pengguna, siswa, orang tua, guru, kepala sekolah, dan lembaga psikologi. Pengguna pertama yaitu siswa dapat melakukan login, login sudah terdaftar secara otomatis. Data dari siswa sudah ada pada database yang disediakan oleh sistem. Siswa dapat melihat perkembangan belajarnya selama ini, test IQ yang dilakukan beberapa bulan sekali, dan dapat melihat rekomendasi dari sistem mengenai bakat dan minatnya. Pengguna kedua yaitu orang tua siswa, untuk masalah login sama dengan siswa. Akun dari orang tua sudah terdaftar dalam sistem yang tersimpan dalam database. DAlam sistem informasi perkembangan siswa, rang tua dapat melihat hal yang sama dengan siswa dan terdapat jadwal temu janji dengan guru yang disediakan oleh sistem untuk mengkonsultasikan siswa secara langsung dengan guru. Pengguna ketiga yaitu guru, dalam hal login sama dengan siswa dan orang tua. Dalam sistem informasi ini guru dapat menginputkan data dan nilai siswa pada sistem dan dapat menerima atau menolak jadwal temu janji yang dibuat oleh orang tua siswa. Pengguna keempat yaitu kepala sekolah, untuk hal login masih sama seperti siswa,orang tua, dan guru. Kepala sekolah dapat melihat grafik perkembangan siswa dan sekolah. 
 ### Tentang Perangkat Lunak
+
 ### Fungsi-fungsi Perangkat Lunak
  - Rekomendasi bidang studi dari hasil perkembangan siswa
  - Management hasil perkembangan psikologi siswa
  - Informasi perkembangan siswa
  - Management konsultasi antara guru dan orang tua
 ### Karakteristik dan Klasifikasi Pengguna
+Karakteristik Pengguna
+1. Siswa
+Tugas : Melihat rekomendasi bidang studi
+Hak : 
+2. Orang tua
+Tugas :Melihat perkembangan anak 
+Hak : Membuat janji temu denggan guru
+3. Guru
+Tugas : Menginput data dan nilai siswa
+Hak : Menerima dan menolak janji temu yang dibuat orang tua
+4. Kepala Sekolah
+Tugas : Melihat perkembangan siswa dan sekolah
+Hak :
 ### Lingkungan Operasi
+Komputer dengan spesifikasi hardware minimal sebagai berikut :
+- Processor Intel Pentium 4 3 Ghz
+- Motherboard support internet connection
+- 2 GB RAM
+- 500 GB Hard Disk Drive utama
+- 500 GB Hard Disk Drive backup
+- VGA Card 256 MB
+- NIC FastEthernet atau Gigabit Ethernet
+- Mouse
+- Keyboard
+- Monitor
+- Power Supply
+Komputer minimal telah terinstall software sebagai berikut
+- Browser
+- Apache HTTP Server
+- Mysql Server
 ### Batasan Desain dan Implementasi
-### Dokumentasi Bagi Pengguna
-### Asumsi dan Ketergantungan
+Batasan desain yang ada pada pengembangan sistem informasi perkembangan siswa antara lain:
+- Tampilan web dibuat dengan menggunakan CSS dan HTML
+- Bahasa pemrograman yang digunakan adalah PHP
+### Kebutuhan Fungsional
+Kebutuhan Fungsional
+1.	Management Perkembangan Psikologi
+1.1.	System harus dapat menerima hasil test psikologi yang dimasukan oleh lembaga psikologi
+2.	Informasi Perkembangan Siswa
+2.1.	Harus dapat memberikan rekomendasi bidang minat & rekomendasi jenjang selanjutnya siswa kepada orang tua siswa dan guru
+2.2.	System harus bisa memberikan informasi tentang perkembangan siswa kepada orang tua
+2.3.	System harus bisa menampilkan laporan tentang perkembangan dan minat seluruh siswa kepada kepala sekolah
+3.	Management Konsultasi
+3.1.	System harus dapat memberikan akses kepada orang tua agar dapat meminta konsultasi kepada guru
+3.2.	System harus bisa memungkinkan orang tua agar dapat membuat jadwal konsultasi kepada guru
+3.3.	System harus dapat memungkinkan guru untuk membalas/memberikan balasan konsultasi dari orang tua
+3.4.	System harus dapat memberi akses kepada guru untuk membuat janji konsultasi dari orang tua
+### Kebutuhan Non-Fungsional
+- Operasional
+Sistem harus dapat digunakan pada web responsif
+Sistem harus bisa terintegrasi dengan nilai rapot siswa
+- Performa
+Sistem harus dapat mmebrikan rekomendasi tidak lebih dari 1 menit
+Sistem harus dapat mengirimkan pesan dengan cepat, tidak boleh lebih dari 30 detik
+- Keamanan
+Wali murid hanya bisa mengakses perkembangan anaknya
+Hanya kepala sekolah yang dapat melihat seluruh perkembangan siswa
