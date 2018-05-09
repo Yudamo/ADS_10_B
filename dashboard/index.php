@@ -1,3 +1,11 @@
+<?php
+require_once '../api/Warehouse.php';
+if (!isset($_SESSION['u_id'])) {
+    header("Location: /login");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,21 +30,40 @@
 <div class="header">
     <a href="#default" class="logo">Logo Sekolah</a>
     <div class="header-right">
-    <a>Nama Guru</a>
+    <a id="my-name">Nama</a>
     <a><img src="notifications-button.png"></a>
   </div>
 </div>
     <!-- Side navigation -->
     <div class="sidenav">
-      <a href="#">Dashboard</a>
-      <a href="#">Perkembangan Akademik</a>
-      <a href="#">Perkembangan Psikologi</a>
-      <hr style="margin-left: 30px; color:white">
-      <a href="#">Layanan Konsultasi</a>
-      <a href="#">Layanan Temu Janji</a>
-      <hr style="margin-left: 30px; color:white">
-      <a href="#">Laporkan Masalah</a>
-      <a href="#">Keluar</a>
+        <?php
+        if ($_SESSION['profile'] == 'parent') {
+            ?>
+            <a href="/dashboard">Dashboard</a>
+            <a href="#">Perkembangan Akademik</a>
+            <a href="#">Perkembangan Psikologi</a>
+            <hr style="margin-left: 30px; color:white">
+            <a href="/chat">Layanan Konsultasi</a>
+            <a href="/daftar-janji-temu">Layanan Temu Janji</a>
+            <a href="/buat-janji-temu">Buat Temu Janji baru</a>
+            <hr style="margin-left: 30px; color:white">
+            <a href="#">Laporkan Masalah</a>
+            <a href="/login?logout">Keluar</a>
+            <?php
+        } else {
+            ?>
+            <a href="/dashboard">Dashboard</a>
+            <a href="#">Perkembangan Akademik</a>
+            <a href="#">Perkembangan Psikologi</a>
+            <hr style="margin-left: 30px; color:white">
+            <a href="/chat">Layanan Konsultasi</a>
+            <a href="/daftar-janji-temu">Layanan Temu Janji</a>
+            <hr style="margin-left: 30px; color:white">
+            <a href="#">Laporkan Masalah</a>
+            <a href="/login?logout">Keluar</a>
+            <?php
+        }
+        ?>
     </div>
 
 <div class="main">
@@ -106,6 +133,14 @@
     });
     </script>
 
+    <script>
+        let profile;
+        $.get("/api/whois.php", {do:"me"}, function (who) {
+            let res = JSON.parse(who).whois;
+            $('#my-name').text(res.name);
+            profile = res.profile;
+        });
+    </script>
 </body>
 
 </html>

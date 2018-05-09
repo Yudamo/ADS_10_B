@@ -335,7 +335,7 @@ body {
   height: 42px;
   margin-left: 11px;
   content: '';
-  background-image: url("/ADS_10_B/chat/img/send.png");
+  background-image: url("/chat/img/send.png");
   background-repeat: no-repeat;
   background-position: center;
 }

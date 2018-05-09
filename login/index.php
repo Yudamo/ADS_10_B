@@ -1,3 +1,14 @@
+<?php
+require_once '../api/Warehouse.php';
+if (isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+} elseif (isset($_SESSION['u_id'])) {
+    header("Location: /dashboard");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

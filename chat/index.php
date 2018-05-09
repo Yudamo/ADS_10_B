@@ -1,3 +1,11 @@
+<?php
+require_once '../api/Warehouse.php';
+if (!isset($_SESSION['u_id'])) {
+    header("Location: /login");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,12 +37,34 @@
 </div>
 <!-- Side navigation -->
 <div class="sidenav">
-    <a href="#">Dashboard</a>
-    <a href="#">Perkembangan Siswa</a>
-    <a href="#">Layanan Konsultasi</a>
-    <a>---------------------</a>
-    <a href="#">Laporkan Masalah</a>
-    <a href="#">Keluar</a>
+    <?php
+    if ($_SESSION['profile'] == 'parent') {
+        ?>
+        <a href="/dashboard">Dashboard</a>
+        <a href="#">Perkembangan Akademik</a>
+        <a href="#">Perkembangan Psikologi</a>
+        <hr style="margin-left: 30px; color:white">
+        <a href="/chat">Layanan Konsultasi</a>
+        <a href="/daftar-janji-temu">Layanan Temu Janji</a>
+        <a href="/buat-janji-temu">Buat Temu Janji baru</a>
+        <hr style="margin-left: 30px; color:white">
+        <a href="#">Laporkan Masalah</a>
+        <a href="/login?logout">Keluar</a>
+        <?php
+    } else {
+        ?>
+        <a href="/dashboard">Dashboard</a>
+        <a href="#">Perkembangan Akademik</a>
+        <a href="#">Perkembangan Psikologi</a>
+        <hr style="margin-left: 30px; color:white">
+        <a href="/chat">Layanan Konsultasi</a>
+        <a href="/daftar-janji-temu">Layanan Temu Janji</a>
+        <hr style="margin-left: 30px; color:white">
+        <a href="#">Laporkan Masalah</a>
+        <a href="/login?logout">Keluar</a>
+        <?php
+    }
+    ?>
 </div>
 
 
