@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2018 at 02:28 AM
+-- Generation Time: May 12, 2018 at 06:12 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -71,6 +71,19 @@ CREATE TABLE `meeting_request` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `relation`
+--
+
+CREATE TABLE `relation` (
+  `relation_id` int(11) NOT NULL,
+  `teacher_u_id` int(11) NOT NULL,
+  `parent_u_id` int(11) NOT NULL,
+  `student_u_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -105,6 +118,12 @@ ALTER TABLE `meeting_request`
   ADD PRIMARY KEY (`request_id`);
 
 --
+-- Indexes for table `relation`
+--
+ALTER TABLE `relation`
+  ADD PRIMARY KEY (`relation_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -130,6 +149,11 @@ ALTER TABLE `meeting`
 --
 ALTER TABLE `meeting_request`
   MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `relation`
+--
+ALTER TABLE `relation`
+  MODIFY `relation_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
