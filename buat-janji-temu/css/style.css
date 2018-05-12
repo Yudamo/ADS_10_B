@@ -555,7 +555,7 @@ input:hover::placeholder, textarea:hover::placeholder {
 input:hover:focus::-ms-placeholder, textarea:hover::focus:-ms-placeholder {
   color: #cbc6c1;
 }
-#form {
+#form-permintaan {
   position: relative;
   width: 20cm;
   height: auto;
